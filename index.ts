@@ -1,9 +1,9 @@
 import express from "express"
-import {connectDB} from "./config/db";
+import {connectDB} from "./src/config/db";
 import dotenv from 'dotenv'
-import createSocket from './core/socket'
+import createSocket from './src/core/socket'
 import {createServer} from "http"
-import {createRoutes} from "./routes";
+import {createRoutes} from "./src/routes";
 
 
 const app = express()
