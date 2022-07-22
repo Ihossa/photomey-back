@@ -1,9 +1,7 @@
 import { Schema } from 'mongoose';
 import * as mongoose from "mongoose";
-import validator from "validator";
 import { generatePasswordHash } from '../utils'
 
-const isEmail = validator.isEmail;
 
 export interface IUserSchema extends mongoose.Document{
     email?: string,
@@ -37,7 +35,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        validate: [isEmail, 'invalid email'],
+        // validate: [isEmail, 'invalid email'],
         unique: true
     },
     userName: {
