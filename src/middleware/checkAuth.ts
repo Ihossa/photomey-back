@@ -7,7 +7,7 @@ export default (
     next: express.NextFunction
 ) => {
 
-    if(req.path === '/user/login' || req.path === '/sign-up'){
+    if(req.path === '/user/login' || req.path === '/sign-up' || req.path === '/'){
         return next();
     }
 

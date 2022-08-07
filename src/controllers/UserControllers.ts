@@ -13,6 +13,16 @@ export default class UserControllers {
         this.io = io
     }
 
+    showAll = (req: express.Request, res: express.Response) =>  {
+        UserModel.find({}, (err: any, user: any[]) => {
+            if(err){
+                return  res.status(404).json({message:"not found"})
+            }
+            user.splice(6)
+            res.json(user)
+        })
+    }
+
     show = (req: express.Request, res: express.Response) =>  {
         const id : string = req.params.id
         UserModel.findById(id, (err: any, user: any) => {

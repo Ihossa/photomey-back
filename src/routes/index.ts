@@ -14,7 +14,7 @@ export const createRoutes = (app:any, io: socket.Server) => {
     const DialogController = new DialogCtrl(io);
     const MessageController = new MessageCtrl(io);
 
-
+    app.get('/', UserController.showAll);
     app.get('/:id', UserController.show);
     app.get('/user/me', UserController.me);
     app.post("/sign-up", UserController.registrate);
