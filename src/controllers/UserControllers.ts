@@ -19,7 +19,8 @@ export default class UserControllers {
                 return  res.status(404).json({message:"not found"})
             }
             user.splice(6)
-            res.json(user)
+            let listUser = user.map((item) => ({fullName: item.fullName, avatar: item.avatar,  locationWork: item.locationWork, experience: item.experience}))
+            res.json({listUser})
         })
     }
 

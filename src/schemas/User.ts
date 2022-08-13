@@ -8,7 +8,10 @@ export interface IUserSchema extends mongoose.Document{
     userName?: string,
     fullName?: string,
     phoneNumber?: string,
-    avatarUrl?: string,
+    avatar?:  {
+        data: Buffer,
+        contentType: String
+    }
     password?: string,
     experience?: number
     price?: number[],
@@ -51,8 +54,11 @@ const UserSchema = new Schema({
     phoneNumber: {
         type: String,
     },
-    avatarUrl: {
-        type: String,
+    avatar: {
+        type: {
+            data: Buffer,
+            contentType: String
+        }
     },
     password: {
         type: String,
