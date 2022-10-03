@@ -4,7 +4,7 @@ import { generatePasswordHash } from '../utils'
 
 
 export interface IUserSchema extends mongoose.Document{
-    email?: string,
+    email: string,
     userName?: string,
     fullName?: string,
     phoneNumber?: string,
@@ -30,8 +30,9 @@ export interface IUserSchema extends mongoose.Document{
         type: Schema.Types.ObjectId[],
         ref: string
     }],
-    isPhotograph?: boolean
-
+    isPhotograph?: boolean,
+    isActivated: boolean,
+    activationLink?: {type: String},
 }
 
 const UserSchema = new Schema({
@@ -106,22 +107,19 @@ const UserSchema = new Schema({
     lastSeen: {
         type: Date,
         default: new Date()
-    }
+    },
+    isActivated: {
+        required: true,
+        type: Boolean,
+        default: false
+    },
+    activationLink: {type: String}
 
 },{
     timestamps: true
 })
 
-UserSchema.pre('save', function (next){
-    const user:IUserSchema = this;
-    if(!user.isModified('password')) return next();
-    
-    generatePasswordHash(user.password).then(hash => {
-        user.password = String(hash);
-        next();
-    }).catch(() => {next()})
 
-})
 
 const User = mongoose.model<IUserSchema>("User", UserSchema)
 

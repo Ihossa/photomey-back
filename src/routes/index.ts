@@ -15,13 +15,17 @@ export const createRoutes = (app:any, io: socket.Server) => {
     const DialogController = new DialogCtrl(io);
     const MessageController = new MessageCtrl(io);
 
-    app.get('/', UserController.showAll);
-    app.get('/:id', UserController.show);
-    app.get('/user/me', UserController.me);
-    app.post("/sign-up", UserController.registrate);
+
+    app.get('/', UserController.getUsers);
+    app.get('/:id', UserController.getPerson);
+    app.post("/sign-up", UserController.registration);
     app.post("/user/me/update", UserController.changeMyProfile)
     app.delete('/:id', UserController.remove)
     app.post("/user/login", LoginValidation, UserController.login)
+    app.post("/user/logout", UserController.logout)
+    app.get("/user/activate", UserController.activate)
+    app.post("/user/refresh", UserController.refresh)
+
 
     app.get('/dialogs/:id', DialogController.index);
     app.delete('/dialogs/:id', DialogController.remove);
