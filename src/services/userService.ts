@@ -1,11 +1,12 @@
 import {UserModel} from "../schemas";
 import {ApiError} from "../core/apiErrors";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from 'uuid';
 import {mailService} from "./mailService";
 import {UserDto} from "../config/dtos";
 import {IUserSchema} from "../schemas/User";
 import {tokenCtrl} from "../controllers/TokenControllers";
+const uuid = require('uuid');
+
 
 class UserService {
     async showAll() {
@@ -53,7 +54,7 @@ class UserService {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`)
         }
         const hashPassword = await bcrypt.hash(password, 3);
-        const activationLink = uuidv4();
+        const activationLink = uuid.v4();
 
         const user = await UserModel.create({email, isPhotograph,  fullName, userName, password: hashPassword, activationLink})
         await mailService.sendActivationMail(email, `${process.env.CLIENT_URL}/user/activate/${activationLink}`);
