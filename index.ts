@@ -4,12 +4,13 @@ import dotenv from 'dotenv'
 import createSocket from './src/core/socket'
 import {createServer} from "http"
 import {createRoutes} from "./src/routes";
+import cors from "cors";
 
 
 const app = express()
 const http = createServer(app);
 const io = createSocket(http);
-
+app.use(cors())
 
 
 createRoutes(app, io)

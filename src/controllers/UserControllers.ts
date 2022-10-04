@@ -16,6 +16,7 @@ export default class UserControllers {
             const users = await userService.showAll();
             return res.json(users);
         } catch (e) {
+            console.log(e)
             next(e);
         }
     }
