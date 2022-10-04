@@ -3,12 +3,14 @@ import {LoginValidation} from "../utils/validation";
 import bodyParser from "body-parser";
 import {checkAuth, updateLastSeen} from "../middleware";
 import socket from 'socket.io'
+import cors from "cors";
 
 export const createRoutes = (app:any, io: socket.Server) => {
 
     app.use(bodyParser.json());
     app.use(updateLastSeen)
     app.use(checkAuth)
+    app.use(cors)
 
 
     const UserController = new UserCtrl(io);
