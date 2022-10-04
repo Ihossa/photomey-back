@@ -10,7 +10,7 @@ export const createRoutes = (app:any, io: socket.Server) => {
     app.use(bodyParser.json());
     app.use(updateLastSeen)
     app.use(checkAuth)
-    app.use(cors)
+    app.use(cors())
 
 
     const UserController = new UserCtrl(io);
