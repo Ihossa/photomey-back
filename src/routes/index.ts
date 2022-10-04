@@ -11,6 +11,11 @@ export const createRoutes = (app:any, io: socket.Server) => {
     app.use(updateLastSeen)
     app.use(checkAuth)
     app.use(cors())
+    app.use(function (res: any) {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+    })
 
 
     const UserController = new UserCtrl(io);
