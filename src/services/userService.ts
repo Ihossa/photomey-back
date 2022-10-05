@@ -8,14 +8,14 @@ import {tokenCtrl} from "../controllers/TokenControllers";
 const uuid = require('uuid');
 
 
-class UserService {
+export class UserService {
     async showAll() {
-        UserModel.find({}, (err: any, user: any[]) => {
+        return UserModel.find({}, (err: any, user: any[]) => {
             if(err){
                 throw ApiError.BadRequest('Нет юзеров')
             }
             user.splice(6)
-            return  user.map((item) => ({fullName: item.fullName, avatar: item.avatar,  locationWork: item.locationWork, experience: item.experience}))
+            return  [...user]
         })
     }
 
@@ -115,4 +115,4 @@ class UserService {
     }
 }
 
-export const userService = new UserService();
+export const userService = new UserService()

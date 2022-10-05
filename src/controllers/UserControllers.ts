@@ -1,8 +1,8 @@
 import express from "express";
 import socket from 'socket.io'
 import {ApiError} from "../core/apiErrors";
-import {userService} from "../services/userService";
 import {validationResult} from "express-validator";
+import {userService} from "../services/userService";
 
 export default class UserControllers {
     io: socket.Server
@@ -10,6 +10,7 @@ export default class UserControllers {
     constructor(io: socket.Server) {
         this.io = io
     }
+
 
     async getUsers(req:express.Request, res:express.Response, next: (e:any) => void) {
         try {
