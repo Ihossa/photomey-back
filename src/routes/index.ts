@@ -25,7 +25,7 @@ export const createRoutes = (app:any, io: socket.Server) => {
     app.delete('/:id', UserController.remove)
     app.post("/user/login", LoginValidation, UserController.login)
     app.post("/user/logout", UserController.logout)
-    app.get("/user/activate", UserController.activate)
+    app.get("/user/activate/:link", UserController.activate)
     app.post("/user/refresh", UserController.refresh)
 
 
