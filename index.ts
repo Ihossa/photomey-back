@@ -10,7 +10,7 @@ import cors from "cors";
 const app = express()
 const http = createServer(app);
 const io = createSocket(http);
-app.use(cors({credentials: true, origin: process.env.CLIENT_URL||'localhost:3000'}));
+app.use(cors());
 
 
 createRoutes(app, io)
