@@ -14,6 +14,7 @@ const io = createSocket(http);
 app.use(cookieParser());
 app.use(cors(
     {
+        credentials: true,
         origin: 'http://localhost:3000'
     }
 ));
